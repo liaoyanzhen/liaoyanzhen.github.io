@@ -1,0 +1,810 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MySQL5.7," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="MySQL 5.7&amp;#x7684;&amp;#x5E76;&amp;#x884C;&amp;#x590D;&amp;#x5236;&amp;#x3002;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL5.7-4">
+<meta property="og:url" content="http://yoursite.com/2016/09/02/MySQL5-7-4/index.html">
+<meta property="og:site_name" content="Lyen's Notes">
+<meta property="og:description" content="MySQL 5.7&amp;#x7684;&amp;#x5E76;&amp;#x884C;&amp;#x590D;&amp;#x5236;&amp;#x3002;">
+<meta property="og:updated_time" content="2016-09-02T07:53:15.408Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL5.7-4">
+<meta name="twitter:description" content="MySQL 5.7&amp;#x7684;&amp;#x5E76;&amp;#x884C;&amp;#x590D;&amp;#x5236;&amp;#x3002;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/02/MySQL5-7-4/"/>
+
+  <title> MySQL5.7-4 | Lyen's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Lyen's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MySQL5.7-4
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-02T15:23:07+08:00" content="2016-09-02">
+              2016-09-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/02/MySQL5-7-4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/02/MySQL5-7-4/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>MySQL 5.7&#x7684;&#x5E76;&#x884C;&#x590D;&#x5236;&#x3002;
+</code></pre><a id="more"></a>
+<h1 id="&#x80CC;&#x666F;"><a href="#&#x80CC;&#x666F;" class="headerlink" title="&#x80CC;&#x666F;"></a>&#x80CC;&#x666F;</h1><p>MySQL&#x7684;master&lt;-&gt;slave&#x7684;&#x90E8;&#x7F72;&#x7ED3;&#x6784;&#xFF0C;&#x4F7F;&#x7528;binlog&#x65E5;&#x5FD7;&#x4FDD;&#x6301;&#x6570;&#x636E;&#x7684;&#x540C;&#x6B65;&#xFF0C;&#x5168;&#x5C40;&#x6709;&#x5E8F;&#x7684;binlog&#x5728;&#x5907;&#x5E93;&#x6309;&#x7167;&#x63D0;&#x4EA4;&#x987A;&#x5E8F;&#x8FDB;&#x884C;&#x56DE;&#x653E;&#x3002;<br>&#x7531;&#x4E8E;&#x65B0;&#x786C;&#x4EF6;&#x7684;&#x53D1;&#x5C55;&#xFF0C;SSD&#x7684;&#x5F15;&#x5165;&#x548C;&#x591A;core&#x7684;CPU&#xFF0C;master&#x8282;&#x70B9;&#x7684;&#x5E76;&#x53D1;&#x5904;&#x7406;&#x80FD;&#x529B;&#x6301;&#x7EED;&#x63D0;&#x5347;&#xFF0C;slave&#x8282;&#x70B9;&#x5B8C;&#x5168;&#x6309;&#x7167;binlog&#x5199;&#x5165;&#x987A;&#x5E8F;&#x7684;&#x5355;&#x7EBF;&#x7A0B;&#x56DE;&#x653E;&#xFF0C;&#x5DF2;&#x5B8C;&#x5168;&#x8DDF;&#x4E0D;&#x4E0A;master&#x8282;&#x70B9;&#x7684;&#x541E;&#x5410;&#x80FD;&#x529B;&#xFF0C;&#x5BFC;&#x81F4;HA&#x5207;&#x6362;&#x548C;&#x6570;&#x636E;&#x4FDD;&#x62A4;&#x5E26;&#x6765;&#x5DE8;&#x5927;&#x7684;&#x6311;&#x6218;&#x3002;</p>
+<h1 id="&#x5E76;&#x884C;&#x590D;&#x5236;&#x7684;&#x6F14;&#x8FDB;"><a href="#&#x5E76;&#x884C;&#x590D;&#x5236;&#x7684;&#x6F14;&#x8FDB;" class="headerlink" title="&#x5E76;&#x884C;&#x590D;&#x5236;&#x7684;&#x6F14;&#x8FDB;"></a>&#x5E76;&#x884C;&#x590D;&#x5236;&#x7684;&#x6F14;&#x8FDB;</h1><p>&#x4ECE;MySQL5.5&#x7248;&#x672C;&#x4EE5;&#x540E;&#xFF0C;&#x5F00;&#x59CB;&#x5F15;&#x5165;&#x5E76;&#x884C;&#x590D;&#x5236;&#x7684;&#x673A;&#x5236;&#xFF0C;&#x662F;MySQL&#x7684;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x7684;&#x7279;&#x6027;&#x3002;</p>
+<p>MySQL5.6&#x5F00;&#x59CB;&#x652F;&#x6301;&#x4EE5;schema&#x4E3A;&#x7EF4;&#x5EA6;&#x7684;&#x5E76;&#x884C;&#x590D;&#x5236;&#xFF0C;&#x5373;&#x5982;&#x679C;binlog row event&#x64CD;&#x4F5C;&#x7684;&#x662F;&#x4E0D;&#x540C;&#x7684;schema&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x786E;&#x5B9A;&#x6CA1;&#x6709;DDL&#x548C;foreign key&#x4F9D;&#x8D56;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5E76;&#x884C;&#x590D;&#x5236;&#x3002;</p>
+<p>&#x793E;&#x533A;&#x4E5F;&#x6709;&#x5F15;&#x5165;&#x4EE5;&#x8868;&#x4E3A;&#x7EF4;&#x5EA6;&#x6216;&#x8005;&#x4EE5;&#x8BB0;&#x5F55;&#x4E3A;&#x7EF4;&#x5EA6;&#x7684;&#x5E76;&#x884C;&#x590D;&#x5236;&#x7684;&#x7248;&#x672C;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;schema&#xFF0C;table&#x6216;&#x8005;record&#xFF0C;&#x90FD;&#x662F;&#x5EFA;&#x7ACB;&#x5728;&#x5907;&#x5E93;slave&#x5B9E;&#x65F6;&#x89E3;&#x6790;row&#x683C;&#x5F0F;&#x7684;event&#x8FDB;&#x884C;&#x5224;&#x65AD;&#xFF0C;&#x4FDD;&#x8BC1;&#x6CA1;&#x6709;&#x51B2;&#x7A81;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FDB;&#x884C;&#x5206;&#x53D1;&#x6765;&#x5B9E;&#x73B0;&#x5E76;&#x884C;&#x3002;</p>
+<p>MySQL5.7&#x7684;&#x5E76;&#x884C;&#x590D;&#x5236;&#xFF0C;multi-threaded slave&#x5373;MTS&#xFF0C;&#x671F;&#x671B;&#x6700;&#x5927;&#x5316;&#x8FD8;&#x539F;&#x4E3B;&#x5E93;&#x7684;&#x5E76;&#x884C;&#x5EA6;&#xFF0C;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x662F;&#x5728;binlog event&#x4E2D;&#x589E;&#x52A0;&#x5FC5;&#x8981;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x4EE5;&#x4FBF;slave&#x8282;&#x70B9;&#x6839;&#x636E;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x5B9E;&#x73B0;&#x5E76;&#x884C;&#x590D;&#x5236;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x5C31;&#x6765;&#x770B;&#x4E0B;MySQL 5.7&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#xFF1A;</p>
+<h1 id="MySQL-5-7-&#x5E76;&#x884C;&#x590D;&#x5236;"><a href="#MySQL-5-7-&#x5E76;&#x884C;&#x590D;&#x5236;" class="headerlink" title="MySQL 5.7 &#x5E76;&#x884C;&#x590D;&#x5236;"></a>MySQL 5.7 &#x5E76;&#x884C;&#x590D;&#x5236;</h1><p>MySQL 5.7&#x7684;&#x5E76;&#x884C;&#x590D;&#x5236;&#x5EFA;&#x7ACB;&#x5728;group commit&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x6240;&#x6709;&#x5728;&#x4E3B;&#x5E93;&#x4E0A;&#x80FD;&#x591F;&#x5B8C;&#x6210;prepared&#x7684;&#x8BED;&#x53E5;&#x8868;&#x793A;&#x6CA1;&#x6709;&#x6570;&#x636E;&#x51B2;&#x7A81;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5728;slave&#x8282;&#x70B9;&#x5E76;&#x884C;&#x590D;&#x5236;&#x3002;<br>&#x6211;&#x4EEC;&#x5148;&#x6765;&#x56DE;&#x987E;&#x4E00;&#x4E0B;group commit&#x7684;&#x60C5;&#x51B5;&#xFF1A;</p>
+<pre><code>1. group commit&#x7684;&#x8FC7;&#x7A0B;&#xFF1A;
+    1. binlog prepare
+    2. InnoDB prepare
+    3. binlog commit(ordered commit)
+        --3.1 Stage #1: flushing transactions to binary log
+        --3.2 Stage #2: Syncing binary log file to disk
+        --3.3 Stage #3: Commit all transactions in order.
+    4. InnoDB commit
+</code></pre><p>&#x5728;ordered commit&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;:</p>
+<ol>
+<li>&#x7531;leader&#x7EBF;&#x7A0B;&#x5E2E;&#x52A9;FLUSH&#x961F;&#x5217;&#x4E2D;&#x7684;&#x7EBF;&#x7A0B;&#x5B8C;&#x6210;flush binlog&#x64CD;&#x4F5C;&#xFF0C;</li>
+<li>&#x7531;leader&#x7EBF;&#x7A0B;&#x5E2E;&#x52A9;SYNC&#x961F;&#x5217;&#x4E2D;&#x7684;&#x7EBF;&#x7A0B;&#x5B8C;&#x6210;sync binlog&#x64CD;&#x4F5C;&#xFF0C;</li>
+</ol>
+<p>&#x4E3A;&#x4E86;&#x8868;&#x793A;&#x4E3B;&#x5E93;&#x5E76;&#x884C;&#x5EA6;&#xFF0C;&#x5728;binlog row event&#x589E;&#x52A0;&#x4E86;&#x5982;&#x4E0B;&#x7684;&#x6807;&#x8BC6;&#xFF1A;</p>
+<pre><code>#160807 15:48:10 server id 100  end_log_pos 739 CRC32 0x2237b2ef        GTID    last_committed=0        sequence_number=3
+SET @@SESSION.GTID_NEXT= &apos;8108dc48-47de-11e6-8690-a0d3c1f20ae4:3&apos;/*!*/;
+</code></pre><p>&#x5373;&#x5728;gtid_event&#x4E2D;&#x589E;&#x52A0;&#x4E24;&#x4E2A;&#x5B57;&#x6BB5;&#xFF1A;</p>
+<pre><code>class Gtid_event: public Binary_log_event
+{
+public:
+  /*
+    The transaction&apos;s logical timestamps used for MTS: see
+    Transaction_ctx::last_committed and
+    Transaction_ctx::sequence_number for details.
+    Note: Transaction_ctx is in the MySQL server code.
+  */
+  long long int last_committed;
+  long long int sequence_number;
+  /**
+    Ctor of Gtid_event
+
+    The layout of the buffer is as follows
+    +-------------+-------------+------------+---------+----------------+
+    | commit flag | ENCODED SID | ENCODED GNO| TS_TYPE | logical ts(:s) |
+    +-------------+-------------+------------+---------+----------------+
+    TS_TYPE is from {G_COMMIT_TS2} singleton set of values
+</code></pre><p>&#x4EE3;&#x7801;&#x4E2D;&#x4E3A;&#x6BCF;&#x4E00;&#x4E2A;transaction&#x51C6;&#x5907;&#x4E86;&#x5982;&#x4E0B;&#x7684;&#x5B57;&#x6BB5;&#xFF1A;</p>
+<pre><code>class Transaction_ctx
+{
+    ......
+    int64 last_committed;
+    int64 sequence_number;
+}
+MYSQL_BIN_LOG&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#x4E2D;&#x7EF4;&#x62A4;&#x4E86;&#x4E24;&#x4E2A;&#x7ED3;&#x6784;&#xFF1A;
+
+class MYSQL_BIN_LOG: public TC_LOG
+{
+  ......
+  /* Committed transactions timestamp */
+   Logical_clock max_committed_transaction;
+  /* &quot;Prepared&quot; transactions timestamp */
+   Logical_clock transaction_counter;
+}
+</code></pre><p>&#x4E8B;&#x52A1;&#x4E2D;&#x7684;sequence_number&#x662F;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x6709;&#x5E8F;&#x9012;&#x589E;&#x7684;&#x6570;&#x5B57;&#xFF0C;&#x6BCF;&#x4E2A;&#x4E8B;&#x52A1;&#x9012;&#x589E;1&#xFF0C;&#x6765;&#x6E90;mysql_bin_log.tranaction_counter.<br>&#x548C;gtid&#x4E00;&#x5BF9;&#x4E00;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x5373;&#x5728;flush&#x9636;&#x6BB5;&#xFF0C;&#x548C;gtid&#x751F;&#x6210;&#x7684;&#x65F6;&#x673A;&#x4E00;&#x81F4;&#xFF0C;&#x4EE3;&#x7801;&#x53C2;&#x8003;&#xFF1A;</p>
+<pre><code>binlog_cache_data::flush
+{   
+     if (flags.finalized) {
+       Transaction_ctx *trn_ctx= thd-&gt;get_transaction();
+       trn_ctx-&gt;sequence_number= mysql_bin_log.transaction_counter.step();
+     }
+     .......
+     mysql_bin_log.write_gtid(thd, this, &amp;writer)))
+     mysql_bin_log.write_cache(thd, this, &amp;writer);
+}
+</code></pre><p>&#x4E8B;&#x52A1;&#x4E2D;last_committed&#x8868;&#x793A;&#x5728;&#x8FD9;&#x4E2A;commit&#x4E0B;&#x7684;&#x4E8B;&#x52A1;&#xFF0C;&#x90FD;&#x662F;&#x53EF;&#x4EE5;&#x5E76;&#x884C;&#x7684;&#xFF0C;&#x5373;&#x6CA1;&#x6709;&#x51B2;&#x7A81;&#xFF0C;<br>Transaction_ctx&#x4E2D;&#x7684;last_committed&#x5728;&#x6BCF;&#x4E2A;&#x8BED;&#x53E5;prepared&#x7684;&#x65F6;&#x5019;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x6765;&#x6E90;mysql_bin_log.max_committed_transaction</p>
+<pre><code>static int binlog_prepare(handlerton *hton, THD *thd, bool all)
+{
+    ......
+    Logical_clock&amp; clock= mysql_bin_log.max_committed_transaction;
+    thd-&gt;get_transaction()-&gt;
+      store_commit_parent(clock.get_timestamp());
+}
+</code></pre><p>&#x800C;mysql_bin_log.max_committed_transaction&#x7684;&#x66F4;&#x65B0;&#x662F;&#x5728;group commit&#x63D0;&#x4EA4;&#x7684;&#x65F6;&#x5019;&#x8FDB;&#x884C;&#x53D8;&#x66F4;&#x3002;</p>
+<pre><code>MYSQL_BIN_LOG::process_commit_stage_queue(THD *thd, THD *first)
+{
+    ......
+    for (THD *head= first ; head ; head = head-&gt;next_to_commit)
+    {
+        if (thd-&gt;get_transaction()-&gt;sequence_number != SEQ_UNINIT)
+            update_max_committed(head);
+    }
+}
+</code></pre><p>&#x5373;&#x83B7;&#x53D6;&#x8FD9;&#x4E2A;group commit&#x961F;&#x5217;&#x4E2D;&#x7684;&#x6700;&#x5927;&#x7684;sequence_number&#x5F53;&#x6210;&#x5F53;&#x524D;&#x7684;max_committed_transaction&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#xFF0C;&#x8FD9;&#x4E2A;&#x673A;&#x5236;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x6210;&#xFF0C;&#x5728;group commit&#x5B8C;&#x6210;&#x4E4B;&#x524D;&#xFF0C;&#x6240;&#x6709;&#x53EF;&#x4EE5;&#x6210;&#x529F;prepared&#x7684;&#x8BED;&#x53E5;&#xFF0C;&#x6CA1;&#x6709;&#x4E8B;&#x5B9E;&#x4E0A;&#x7684;&#x51B2;&#x7A81;&#xFF0C;<br>&#x5206;&#x914D;&#x6210;&#x76F8;&#x540C;&#x7684;last_committed&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5728;slave&#x8282;&#x70B9;&#x5E76;&#x884C;&#x590D;&#x5236;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#x4E0B;&#x9762;&#x65F6;&#x5E8F;&#x7684;&#x4E8B;&#x52A1;&#xFF1A;</p>
+<pre><code>session 1&#xFF1A;insert into t1 value(100, &apos;xpchild&apos;);
+session 2&#xFF1A;insert into t1 value(101, &apos;xpchild&apos;);
+session 2&#xFF1A;commit
+session 1&#xFF1A;commit
+</code></pre><p>Binlog&#x65E5;&#x5FD7;&#x7247;&#x6BB5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code># at 1398
+#160807 15:38:14 server id 100  end_log_pos 1463 CRC32 0xd6141f71       GTID    last_committed=5        sequence_number=6
+SET @@SESSION.GTID_NEXT= &apos;8108dc48-47de-11e6-8690-a0d3c1f20ae4:6&apos;/*!*/;
+&apos;/*!*/;
+### INSERT INTO `tp`.`t1`
+### SET
+###   @1=101 /* INT meta=0 nullable=0 is_null=0 */
+###   @2=&apos;xpchild&apos; /* VARSTRING(100) meta=100 nullable=1 is_null=0 */
+
+COMMIT/*!*/;
+# at 1658
+#160807 15:38:24 server id 100  end_log_pos 1723 CRC32 0xa24923a8       GTID    last_committed=5        sequence_number=7
+SET @@SESSION.GTID_NEXT= &apos;8108dc48-47de-11e6-8690-a0d3c1f20ae4:7&apos;/*!*/;
+### INSERT INTO `tp`.`t1`
+### SET
+###   @1=100 /* INT meta=0 nullable=0 is_null=0 */
+###   @2=&apos;xpchild&apos; /* VARSTRING(100) meta=100 nullable=1 is_null=0 */
+</code></pre><p>&#x4E24;&#x4E2A;insert&#x8BED;&#x53E5;&#x5728;prepared&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6CA1;&#x6709;&#x4E8B;&#x5B9E;&#x4E0A;&#x7684;&#x51B2;&#x7A81;&#xFF0C;&#x90FD;&#x83B7;&#x53D6;&#x5F53;&#x524D;&#x6700;&#x5927;&#x7684;committed number = 5.<br>&#x63D0;&#x4EA4;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4FDD;&#x6301;sequence_number&#x751F;&#x6210;&#x65F6;&#x5019;&#x7684;&#x5168;&#x5C40;&#x6709;&#x5E8F;&#x6027;&#xFF0C;&#x5907;&#x5E93;&#x6062;&#x590D;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;&#x4E8B;&#x52A1;&#x5C31;&#x53EF;&#x4EE5;&#x5E76;&#x884C;&#x5B8C;&#x6210;&#x3002;</p>
+<p>&#x4F46;&#x53C8;&#x5982;&#x4E0B;&#x9762;&#x7684;case&#xFF1A;</p>
+<pre><code>session 1: insert into t1 value(100, &apos;xpchild&apos;);
+
+session 2: insert into t1 value(101, &apos;xpchild&apos;);
+session 2: commit;
+
+session 3: insert into t1 value(102, &apos;xpchild&apos;);
+session 3: commit;
+
+session 1: commit;
+</code></pre><p>&#x4EA7;&#x751F;&#x5982;&#x4E0B;&#x7684;&#x987A;&#x5E8F;&#xFF1A;</p>
+<pre><code>#160807 15:47:58 server id 100  end_log_pos 219 CRC32 0x3f295e2b        GTID    last_committed=0        sequence_number=1
+### INSERT INTO `tp`.`t1`
+### SET
+###   @1=101 /* INT meta=0 nullable=0 is_null=0 */
+.....
+#160807 15:48:05 server id 100  end_log_pos 479 CRC32 0xda52bed0        GTID    last_committed=1        sequence_number=2
+### INSERT INTO `tp`.`t1`
+### SET
+###   @1=102 /* INT meta=0 nullable=0 is_null=0 */
+......
+#160807 15:48:10 server id 100  end_log_pos 739 CRC32 0x2237b2ef        GTID    last_committed=0        sequence_number=3
+### INSERT INTO `tp`.`t1`
+### SET
+###   @1=100 /* INT meta=0 nullable=0 is_null=0 */
+....
+</code></pre><p>session 1&#x548C;session 2&#x8BED;&#x53E5;&#x6267;&#x884C;&#x4E0D;&#x51B2;&#x7A81;&#xFF0C;&#x5206;&#x914D;&#x4E86;&#x76F8;&#x540C;&#x7684;last_committed&#xFF0C;<br>session 2&#x63D0;&#x4EA4;&#xFF0C;&#x63A8;&#x9AD8;&#x4E86;last_committed&#xFF0C;&#x6240;&#x4EE5;session 3&#x7684;laste_committed&#x53D8;&#x6210;&#x4E86;1&#xFF0C;<br>&#x6700;&#x540E;session 1&#x63D0;&#x4EA4;&#x3002;</p>
+<p>&#x6CE8;&#x610F;&#xFF1A; &#x8FD9;&#x5C31;&#x662F;MySQL 5.7.3&#x4E4B;&#x540E;&#x7684;&#x6539;&#x8FDB;&#xFF1A;</p>
+<p>&#x5728;MySQL 5.7.3&#x4E4B;&#x524D;&#xFF0C;&#x5FC5;&#x987B;&#x5728;&#x4E00;&#x4E2A;group commit&#x4E4B;&#x5185;&#x7684;&#x4E8B;&#x52A1;&#xFF0C;&#x624D;&#x80FD;&#x591F;&#x5728;slave&#x8282;&#x70B9;&#x5E76;&#x884C;&#x590D;&#x5236;&#xFF0C;&#x4F46;&#x5982;&#x4E0A;&#x9762;&#x7684;&#x8FD9;&#x4E2A;case&#x3002;</p>
+<p>session 1 &#x548C;session 2&#x867D;&#x7136;commit&#x7684;&#x65F6;&#x95F4;&#x6709;&#x5DEE;&#xFF0C;&#x5E76;&#x4E14;&#x4E0D;&#x5728;&#x4E00;&#x4E2A;group commit&#xFF0C;&#x751F;&#x6210;&#x7684;binlog&#x4E5F;&#x6CA1;&#x6709;&#x8FDE;&#x7EED;&#xFF0C;&#x4F46;&#x4E8B;&#x5B9E;&#x4E0A;&#x662F;&#x53EF;&#x4EE5;&#x5E76;&#x884C;&#x6062;&#x590D;&#x6267;&#x884C;&#x7684;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#x4ECE;MySQL 5.7.3&#x4E4B;&#x540E;&#xFF0C;&#x5E76;&#x884C;&#x6062;&#x590D;&#xFF0C;&#x51CF;&#x5C11;&#x4E86;group commit&#x7684;&#x4F9D;&#x8D56;&#xFF0C;&#x4F46;group commit&#x4ECD;&#x7136;&#x5BF9;&#x5E76;&#x884C;&#x6062;&#x590D;&#x8D77;&#x7740;&#x975E;&#x5E38;&#x5927;&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
+<h1 id="MySQL-5-7-&#x5E76;&#x884C;&#x590D;&#x5236;&#x53C2;&#x6570;"><a href="#MySQL-5-7-&#x5E76;&#x884C;&#x590D;&#x5236;&#x53C2;&#x6570;" class="headerlink" title="MySQL 5.7 &#x5E76;&#x884C;&#x590D;&#x5236;&#x53C2;&#x6570;"></a>MySQL 5.7 &#x5E76;&#x884C;&#x590D;&#x5236;&#x53C2;&#x6570;</h1><p>MySQL 5.7&#x589E;&#x52A0;&#x4E86;&#x5982;&#x4E0B;&#x53C2;&#x6570;&#xFF1A;</p>
+<pre><code>mysql&gt; show global variables like &apos;%slave_parallel_type%&apos;;
++---------------------+---------------+
+| Variable_name       | Value         |
++---------------------+---------------+
+| slave_parallel_type | LOGICAL_CLOCK |
++---------------------+---------------+
+1 row in set (0.00 sec)
+</code></pre><p>slave_parallel_type&#x53D6;&#x503C;&#xFF1A;</p>
+<ol>
+<li>DATABASE&#xFF1A; &#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x517C;&#x5BB9;5.6&#x4EE5;schema&#x7EF4;&#x5EA6;&#x7684;&#x5E76;&#x884C;&#x590D;&#x5236;</li>
+<li>LOGICAL_CLOCK&#xFF1A; MySQL 5.7&#x57FA;&#x4E8E;&#x7EC4;&#x63D0;&#x4EA4;&#x7684;&#x5E76;&#x884C;&#x590D;&#x5236;&#x673A;&#x5236;</li>
+</ol>
+<h1 id="MySQL-5-7-&#x5E76;&#x884C;&#x590D;&#x5236;&#x5F71;&#x54CD;&#x56E0;&#x7D20;"><a href="#MySQL-5-7-&#x5E76;&#x884C;&#x590D;&#x5236;&#x5F71;&#x54CD;&#x56E0;&#x7D20;" class="headerlink" title="MySQL 5.7 &#x5E76;&#x884C;&#x590D;&#x5236;&#x5F71;&#x54CD;&#x56E0;&#x7D20;"></a>MySQL 5.7 &#x5E76;&#x884C;&#x590D;&#x5236;&#x5F71;&#x54CD;&#x56E0;&#x7D20;</h1><p>group commit delay</p>
+<p>&#x9996;&#x5148;&#xFF0C;&#x5E76;&#x884C;&#x590D;&#x5236;&#x5FC5;&#x987B;&#x5EFA;&#x7ACB;&#x5728;&#x4E3B;&#x5E93;&#x7684;&#x771F;&#x5B9E;&#x8D1F;&#x8F7D;&#x662F;&#x5E76;&#x884C;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x624D;&#x80FD;&#x4F7F;MTS&#x6709;&#x673A;&#x4F1A;&#x5728;slave&#x8282;&#x70B9;&#x4E0A;&#x5B8C;&#x6210;&#x5E76;&#x884C;&#x590D;&#x5236;&#xFF0C;<br>&#x5176;&#x6B21;&#xFF0C;MySQL 5.7&#x524D;&#x9762;&#x8BA8;&#x8BBA;&#x7684;&#x5B9E;&#x73B0;&#x673A;&#x5236;&#xFF0C;&#x53EF;&#x4EE5;&#x4EBA;&#x5DE5;&#x7684;&#x589E;&#x52A0;group commit&#x7684;delay&#xFF0C;&#x6253;&#x5305;&#x66F4;&#x591A;&#x7684;&#x4E8B;&#x52A1;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x63D0;&#x5347;slave&#x590D;&#x5236;&#x7684;&#x5E76;&#x884C;&#x5EA6;&#x3002;&#x4F46;&#x4ECE;5.7.3&#x5F00;&#x59CB;&#xFF0C;&#x5DF2;&#x7ECF;&#x51CF;&#x5C11;&#x4E86;group commit&#x7684;&#x4F9D;&#x8D56;&#xFF0C;<br>&#x5C3D;&#x91CF;&#x51CF;&#x5C11;delay&#x53C2;&#x6570;&#x8BBE;&#x7F6E;&#x5BF9;&#x4E3B;&#x5E93;&#x7684;&#x5F71;&#x54CD;&#x3002;</p>
+<p>&#x5408;&#x7406;&#x8BBE;&#x7F6E;&#x5982;&#x4E0B;&#x53C2;&#x6570;&#xFF1B;</p>
+<pre><code>mysql&gt; show global variables like &apos;%group_commit%&apos;;
++-----------------------------------------+--------+
+| Variable_name                           | Value  |
++-----------------------------------------+--------+
+| binlog_group_commit_sync_delay          | 100000 |
+| binlog_group_commit_sync_no_delay_count | 0      |
++-----------------------------------------+--------+
+</code></pre><h1 id="&#x4E00;&#x70B9;&#x5EFA;&#x8BAE;"><a href="#&#x4E00;&#x70B9;&#x5EFA;&#x8BAE;" class="headerlink" title="&#x4E00;&#x70B9;&#x5EFA;&#x8BAE;"></a>&#x4E00;&#x70B9;&#x5EFA;&#x8BAE;</h1><p>&#x5C3D;&#x91CF;&#x4F7F;&#x7528;row&#x683C;&#x5F0F;&#x7684;binlog<br>slave_parallel_workers &#x592A;&#x591A;&#x7684;&#x7EBF;&#x7A0B;&#x4F1A;&#x589E;&#x52A0;&#x7EBF;&#x7A0B;&#x95F4;&#x540C;&#x6B65;&#x7684;&#x5F00;&#x9500;&#xFF0C;&#x5EFA;&#x8BAE;4-8&#x4E2A;slave&#x7EBF;&#x7A0B;&#xFF0C;&#x6839;&#x636E;&#x6D4B;&#x8BD5;&#x6765;&#x6700;&#x7EC8;&#x786E;&#x5B9A;&#x3002;<br>&#x5982;&#x679C;&#x5BA2;&#x6237;&#x7AEF;&#x6709;&#x5E76;&#x884C;&#x5EA6;&#xFF0C;&#x4E0D;&#x7528;&#x523B;&#x610F;&#x589E;&#x52A0;master&#x7684;group commit&#xFF0C;&#x51CF;&#x5C11;&#x5BF9;&#x4E3B;&#x5E93;&#x7684;&#x5F71;&#x54CD;&#x3002;<br>&#x53E6;&#x5916;&#xFF1A;<br>booking&#x5728;&#x4F7F;&#x7528;&#x7684;&#x65F6;&#x5019;&#x9047;&#x5230;&#x7684;&#x5982;&#x4E0B;case&#xFF1A;</p>
+<p>&#x6570;&#x636E;&#x5E93;&#x7684;&#x90E8;&#x7F72;&#x7ED3;&#x6784;&#x662F;&#xFF1A;master-&gt;slave1-&gt;slave2</p>
+<p>&#x5047;&#x8BBE;&#xFF0C;&#x5F53;t1,t2,t3,t4&#x56DB;&#x4E2A;&#x4E8B;&#x52A1;&#x5728;master group commit&#x4E2D;&#xFF0C;&#x90A3;&#x4E48;slave1&#x7EBF;&#x7A0B;&#x5C31;&#x53EF;&#x4EE5;&#x5E76;&#x884C;&#x6267;&#x884C;&#x8FD9;&#x56DB;&#x4E2A;&#x4E8B;&#x52A1;&#xFF0C;<br>&#x4F46;&#x5728;slave1&#x6267;&#x884C;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5206;&#x6210;&#x4E86;&#x4E24;&#x4E2A;group commit&#xFF0C;&#x90A3;&#x4E48;&#x5728;slave2&#x8282;&#x70B9;&#x4E0A;&#xFF0C;&#x5E76;&#x884C;&#x5EA6;&#x5C31;&#x964D;&#x4F4E;&#x4E86;&#x4E00;&#x500D;&#x3002;</p>
+<p>booking&#x7ED9;&#x51FA;&#x7684;&#x540E;&#x7EED;&#x7684;&#x89E3;&#x6CD5;&#xFF0C;&#x5982;&#x679C;slave&#x4E0D;&#x591A;&#xFF0C;&#x5EFA;&#x8BAE;&#x90FD;&#x6302;&#x8F7D;&#x5728;master&#x4E0A;&#xFF0C;&#x5982;&#x679C;slave&#x8FC7;&#x591A;&#xFF0C;&#x8003;&#x8651;&#x4F7F;&#x7528;binlog server&#xFF0C;&#x6765;&#x907F;&#x514D;&#x8FD9;&#x6837;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x4F46;&#x5176;&#x5B9E;&#x5728;slave1&#x8282;&#x70B9;&#x4E0A;&#x8FDB;&#x884C;&#x5E76;&#x884C;&#x6062;&#x590D;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4FDD;&#x6301;&#x7740;&#x4E3B;&#x5E93;&#x7684;last_committed&#x548C;sequence_number&#x4E0D;&#x53D8;&#xFF0C;&#x867D;&#x7136;&#x65E0;&#x6CD5;&#x4FDD;&#x8BC1;binlog&#x5199;&#x5165;&#x7684;&#x987A;&#x5E8F;&#x5B8C;&#x5168;&#x548C;&#x4E3B;&#x5E93;&#x4E00;&#x81F4;&#xFF0C;&#x4F46;&#x53EF;&#x4EE5;&#x7F13;&#x89E3;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x3002;</p>
+<p>&#x8F6C;&#x8F7D;&#x81EA;: <a href="http://mysql.taobao.org/monthly/2016/08/01/" target="_blank" rel="external">&#x6DD8;&#x5B9D;mysql</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL5-7/" rel="tag">#MySQL5.7</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/02/MySQL5-7-3/" rel="next" title="MySQL5.7-3">
+                <i class="fa fa-chevron-left"></i> MySQL5.7-3
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/02/MySQL5-7-4/"
+           data-title="MySQL5.7-4" data-url="http://yoursite.com/2016/09/02/MySQL5-7-4/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Lyen" />
+          <p class="site-author-name" itemprop="name">Lyen</p>
+          <p class="site-description motion-element" itemprop="description">随便写写</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/lyennnnnn" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://fanfou.com/%E5%BD%A6%E8%87%BB" target="_blank" title="饭否">
+                  
+                    <i class="fa fa-fw fa-fanfou"></i>
+                  
+                  饭否
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#并行复制的演进"><span class="nav-number">2.</span> <span class="nav-text">并行复制的演进</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL-5-7-并行复制"><span class="nav-number">3.</span> <span class="nav-text">MySQL 5.7 并行复制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL-5-7-并行复制参数"><span class="nav-number">4.</span> <span class="nav-text">MySQL 5.7 并行复制参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL-5-7-并行复制影响因素"><span class="nav-number">5.</span> <span class="nav-text">MySQL 5.7 并行复制影响因素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一点建议"><span class="nav-number">6.</span> <span class="nav-text">一点建议</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lyen</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liaoyanzhen"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
